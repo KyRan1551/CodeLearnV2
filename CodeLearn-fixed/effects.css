@@ -1,0 +1,144 @@
+/* ---------- Конфетти ---------- */
+.fx-confetti {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+
+/* ---------- Окно нового уровня ---------- */
+.fx-levelup {
+  border: none;
+  border-radius: 20px;
+  padding: 32px 36px;
+  max-width: 360px;
+  width: calc(100% - 32px);
+  text-align: center;
+  background: var(--panel, #1c1f2b);
+  color: var(--text, #f1f1f5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.fx-levelup::backdrop {
+  background: rgba(10, 10, 20, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.fx-levelup[open] {
+  animation: fx-pop 0.45s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.fx-levelup-badge {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #7c5cff, #ec4899);
+  box-shadow: 0 0 0 6px rgba(124, 92, 255, 0.25), 0 0 40px rgba(236, 72, 153, 0.5);
+}
+
+.fx-levelup-kicker {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green, #22c55e);
+}
+
+.fx-levelup-title {
+  margin: 6px 0 8px;
+  font-size: 1.7rem;
+}
+
+.fx-levelup-text {
+  margin: 0 0 22px;
+  opacity: 0.8;
+}
+
+.fx-levelup-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, #7c5cff, #5b8cff);
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.fx-levelup-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.fx-levelup-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@keyframes fx-pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ---------- Переключатели ---------- */
+.fx-settings { display: grid; gap: 14px; }
+
+.fx-switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fx-switch input {
+  position: relative; 
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fx-switch-track {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(128, 128, 128, 0.35);
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.fx-switch-track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.fx-switch input:checked + .fx-switch-track { background: var(--cl-success, #22c55e); }
+.fx-switch input:checked + .fx-switch-track::after { transform: translateX(20px); }
+.fx-switch input:focus-visible + .fx-switch-track { outline: 2px solid #7c5cff; outline-offset: 2px; }
+
+.fx-note { margin: 0; font-size: 0.85rem; opacity: 0.7; }
+
+/* ---------- Режим без анимаций ---------- */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

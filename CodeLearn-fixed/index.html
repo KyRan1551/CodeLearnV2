@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10111b">
+  <meta name="description" content="CodeLearn — практическое обучение программированию с уроками, проектами и автоматической проверкой кода.">
+  <title>CodeLearn — учись создавать</title>
+
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://esm.sh" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="skills.css">
+  <link rel="stylesheet" href="effects.css">
+
+  <!-- Порядок важен! -->
+  <script src="effects.js" defer></script>
+  <script src="skills.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/tests.js" defer></script>
+  <script src="js/state.js" defer></script>
+  <script src="js/utils.js" defer></script>
+  <script src="js/pages.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/editor.js" defer></script>
+  <script src="js/code-editor.js" defer></script>
+  <script src="js/workspace.js" defer></script>
+  <script src="js/events.js" defer></script>
+  <script src="js/router.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <script>
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+    }
+  </script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="dashboard" aria-label="CodeLearn — главная">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span>code<span class="brand-accent">learn</span><small>ACADEMY</small></span>
+      </a>
+
+      <div class="sidebar-label">ОБУЧЕНИЕ</div>
+      <nav class="navigation" aria-label="Главная навигация">
+        <button class="nav-item active" data-page="dashboard">
+          <span class="nav-icon">◈</span>Обзор
+        </button>
+        <button class="nav-item" data-page="lessons">
+          <span class="nav-icon">№</span>Уроки
+        </button>
+        <button class="nav-item" data-page="projects">
+          <span class="nav-icon">▣</span>Практические проекты
+          <span class="nav-count" id="project-count">3</span>
+        </button>
+        <button class="nav-item" data-page="workspace">
+          <span class="nav-icon">⌘</span>Редактор кода
+        </button>
+      </nav>
+
+      <div class="sidebar-label">ПРОГРЕСС</div>
+      <nav class="navigation" aria-label="Прогресс">
+        <button class="nav-item" data-page="skills">
+          <span class="nav-icon">‡</span>Дерево навыков
+        </button>
+        <button class="nav-item" data-page="achievements">
+          <span class="nav-icon">✧</span>Достижения
+        </button>
+        <button class="nav-item" data-page="profile">
+          <span class="nav-icon">◎</span>Мой профиль
+        </button>
+      </nav>
+
+       <div class="sidebar-bottom">
+        <div class="upgrade-card">
+          <div class="upgrade-icon">✦</div>
+          <strong>Создавай настоящее</strong>
+          <p>Теория становится навыком только в практике.</p>
+          <button class="upgrade-button" data-page="projects">К проектам →</button>
+        </div>
+
+        <div class="user-card">
+          <div class="avatar" id="user-avatar">CL</div>
+          <div class="user-info">
+            <strong id="user-name">Разработчик</strong>
+            <span id="user-level">Уровень 1</span>
+          </div>
+          <button class="icon-button user-settings" data-page="profile" aria-label="Настройки профиля">•••</button>
+        </div>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" id="menu-toggle" aria-label="Открыть меню" aria-controls="sidebar" aria-expanded="false">☰</button>
+          <div class="breadcrumbs">
+            <span>CodeLearn</span><span class="breadcrumb-divider">/</span>
+            <strong id="page-name">Обзор</strong>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="xp-pill" title="Накопленный опыт"><span>✦</span><strong id="top-xp">0 XP</strong></div>
+          <button class="icon-button theme-toggle" id="theme-toggle" aria-label="Переключить тему" title="Переключить тему">☀</button>
+        </div>
+      </header>
+
+      <div class="page-container" id="content" aria-live="polite">
+        <section class="loading-state">Загружаем CodeLearn...</section>
+        <noscript><p class="loading-state">Для работы CodeLearn нужно включить JavaScript.</p></noscript>
+      </div>
+
+      <footer class="footer">
+        <span>© 2026 CodeLearn Academy</span>
+        <span>Создавай. Проверяй. Развивайся.</span>
+      </footer>
+    </main>
+  </div>
+
+  <dialog class="modal" id="modal">
+    <div class="modal-content" id="modal-content"></div>
+    <button class="modal-close icon-button" id="modal-close" aria-label="Закрыть окно">✕</button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
